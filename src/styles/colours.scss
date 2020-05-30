@@ -1,0 +1,25 @@
+$primary: #AEA1EA;
+$secondary: #35E0FF;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+#nav-backdrop {
+  background-color: $primary;
+  height: 100%;
+  width: 100%;
+  display: grid;
+}
+
+#nav-backdrop img {
+  max-width: 75%;
+  align-self: center;
+  margin: 0 auto;
+}

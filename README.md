@@ -5,10 +5,7 @@ This is the repo that contains the full stack for the Madhouse Miners website.
 This includes the following:
 
 * React based static website
-* Node JS based GraphQL API server
 * Docker files for building and development
-
-The back-end data store is a Postgres RDBMS.
 
 ## Development
 

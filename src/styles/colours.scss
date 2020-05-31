@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
 $primary: #aea1ea;
 $secondary: #35e0ff;
 
@@ -5,6 +7,8 @@ $secondary: #35e0ff;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Open Sans", Arial, sans-serif;
+  color: #303030;
 }
 
 html,
@@ -18,53 +22,20 @@ body {
   min-height: 100%;
 }
 
-#nav-backdrop {
-  background-color: $primary;
-  height: 100%;
-  width: 100%;
-  animation: navShrinkUp 0.5s ease-in-out 1s 1 forwards;
-  position: relative;
+#content {
+  opacity: 0;
+  visibility: hidden;
+  animation: showContent 0.5s ease-in-out 1.5s 1 forwards;
+  margin: 20px;
 }
 
-@keyframes navShrinkUp {
+@keyframes showContent {
   from {
-    height: 100%;
-    text-align: center;
+    visibility: hidden;
+    opacity: 0;
   }
   to {
-    height: 150px;
-    text-align: left;
-  }
-}
-
-#nav-backdrop img {
-  max-width: 75%;
-  max-height: 75%;
-  animation: navLogoShow 1.5s ease-in-out 0.5s 1 forwards;
-  margin: 0 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-}
-
-@keyframes navLogoShow {
-  0% {
+    visibility: visible;
     opacity: 100%;
-  }
-  33% {
-    opacity: 0;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-  }
-  66% {
-    opacity: 0;
-    left: 5px;
-    transform: translateY(-50%) translateX(0);
-  }
-  100% {
-    opacity: 100%;
-    left: 12px;
-    transform: translateY(-50%) translateX(0);
   }
 }

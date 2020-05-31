@@ -1,0 +1,68 @@
+@import "../../styles/colours";
+
+#nav-backdrop {
+  background-color: $primary;
+  height: 100%;
+  width: 100%;
+  animation: navShrinkUp 0.5s ease-in-out 1s 1 forwards;
+  position: relative;
+  box-shadow: 0 10px 10px rgba(53, 224, 255, 0.16);
+}
+
+@keyframes navShrinkUp {
+  from {
+    height: 100%;
+    text-align: center;
+  }
+  to {
+    height: 150px;
+    text-align: left;
+  }
+}
+
+#nav-backdrop img {
+  max-width: 75%;
+  max-height: 75%;
+  animation: navLogoShow 1.5s ease-in-out 0.5s 1 forwards;
+  margin: 0 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+@keyframes navLogoShow {
+  0% {
+    opacity: 100%;
+  }
+  33% {
+    opacity: 0;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+  66% {
+    opacity: 0;
+    left: 5px;
+    transform: translateY(-50%) translateX(0);
+  }
+  100% {
+    opacity: 100%;
+    left: 12px;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+ul.nav-right {
+  visibility: hidden;
+  animation: showContent 0.5s ease-in-out 1.5s 1 forwards;
+  list-style: none;
+  float: right;
+  margin-top: 75px;
+  margin-right: 20px;
+  transform: translateY(-50%);
+}
+
+ul.nav-right li {
+  display: inline-block;
+  margin: 0 20px;
+}

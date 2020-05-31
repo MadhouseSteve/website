@@ -1,25 +1,36 @@
 import React from "react";
-import logo from "./images/logo/*.png";
-import "./styles/colours.scss";
+import NavBar from "./components/Navbar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
-console.debug(logo);
+import Homepage from "./pages/homepage";
+import Login from "./pages/login";
+import Register from "./pages/register";
+
+const apolloClient = new ApolloClient({
+  uri: "http://localhost:8080/graphql",
+});
 
 export default () => {
   return (
-    <div id="nav-backdrop">
-      <img
-        src={logo.logo}
-        srcSet={`
-    ${logo.logo} 618w,
-    ${logo["logo@0.5x"]} 309w,
-    ${logo["logo@0.75x"]} 463w,
-    ${logo["logo@1.5x"]} 926w,
-    ${logo["logo@2x"]} 1235w,
-    ${logo["logo@3x"]} 1852w,
-    ${logo["logo@4x"]} 2468w
-    `}
-        alt="Madhouse Miners Logo"
-      />
-    </div>
+    <ApolloProvider client={apolloClient}>
+      <Router>
+        <NavBar />
+        <div id="content">
+          <Switch>
+            <Route path="/" exact={true}>
+              <Homepage />
+            </Route>
+            <Route path="/login" exact={true}>
+              <Login />
+            </Route>
+            <Route path="/register" exact={true}>
+              <Register />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 };

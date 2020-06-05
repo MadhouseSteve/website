@@ -29,11 +29,12 @@ export default () => {
     return <div>Error loading chat</div>;
   }
 
-  console.log(data);
-
-  const messages = data!.chat.map((message) => (
-    <Message key={message.id} message={message} />
-  ));
+  let messages;
+  if (data) {
+    messages = data.chat.map((message) => (
+      <Message key={message.id} message={message} />
+    ));
+  }
 
   return (
     <div className="chat">

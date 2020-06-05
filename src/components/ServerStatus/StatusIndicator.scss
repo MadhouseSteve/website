@@ -1,0 +1,37 @@
+.server-status-dot {
+  height: 10px;
+  width: 10px;
+  background-color: #707070;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.server-status-indicator {
+  font-size: 0.75em;
+  margin-top: 3px;
+
+  &.Online {
+    .server-status-dot {
+      background-color: #0ea715;
+    }
+  }
+
+  &.Offline {
+    .server-status-dot {
+      background-color: #a70e15;
+    }
+  }
+
+  &.Stopping {
+    .server-status-dot {
+      background-color: #a58b13;
+    }
+  }
+
+  &.Starting {
+    .server-status-dot {
+      background-color: #1960ad;
+    }
+  }
+}

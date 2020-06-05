@@ -1,0 +1,8 @@
+@import "../styles/colours";
+
+.wide-left {
+  @media (min-width: $breakpoint) {
+    display: grid;
+    grid-template-columns: auto 350px;
+  }
+}

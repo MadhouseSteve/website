@@ -1,10 +1,11 @@
 import React from "react";
 import ServerStatus from "../components/ServerStatus";
 import Chatbox from "../components/Chatbox";
+import "./homepage.scss";
 
 export default () => {
   return (
-    <React.Fragment>
+    <div className="wide-left">
       <div>
         <ServerStatus section="modded" />
         <ServerStatus section="vanilla" />
@@ -12,6 +13,6 @@ export default () => {
       <div>
         <Chatbox />
       </div>
-    </React.Fragment>
+    </div>
   );
 };

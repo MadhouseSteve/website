@@ -2,6 +2,7 @@
 
 $primary: #aea1ea;
 $secondary: #35e0ff;
+$breakpoint: 750px;
 
 * {
   padding: 0;
@@ -23,18 +24,22 @@ body {
 }
 
 #content {
-  opacity: 0;
-  visibility: hidden;
-  animation: showContent 0.5s ease-in-out 1.5s 1 forwards;
+  opacity: 100%;
+  visibility: visible;
+  animation: showContent 2s ease-in-out 0s 1;
   margin: 20px;
 }
 
 @keyframes showContent {
-  from {
+  0% {
     visibility: hidden;
     opacity: 0;
   }
-  to {
+  75% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
     visibility: visible;
     opacity: 100%;
   }

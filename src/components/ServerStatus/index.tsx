@@ -4,6 +4,7 @@ import IServerStatus from "../../models/ServerStatus";
 
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import "./index.scss";
 
 const SERVER_LIST = gql`
   query servers($category: String) {

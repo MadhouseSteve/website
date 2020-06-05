@@ -1,5 +1,6 @@
 import { ServerStatuses } from "../../models/ServerStatus";
 import React from "react";
+import "./StatusIndicator.scss";
 
 export default (props: { status: ServerStatuses }) => {
   let text = "";

@@ -1,3 +1,9 @@
 import React from "react";
 
-export default () => <div>Hello Login</div>;
+export default () => (
+  <div>
+    <form>
+      <input type="email" id="email" name="email" />
+    </form>
+  </div>
+);

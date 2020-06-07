@@ -15,8 +15,7 @@
   display: block;
   border-radius: 3px;
   width: 100%;
-  margin-bottom: 15px;
-  margin-top: 5px;
+  margin: 5px 0;
 }
 
 button {
@@ -25,4 +24,21 @@ button {
   font-size: 0.9em;
   border-radius: 3px;
   background-color: $primary;
+  margin-left: 10px;
+}
+
+.form-group.error {
+  background-color: #ffd2d2;
+  border: 1px solid darken(#ffd2d2, 20%);
+  border-radius: 5px;
+  margin-bottom: 10px;
+
+  div {
+    font-weight: bold;
+    color: #b30b0b;
+  }
+}
+
+.form-group {
+  padding: 10px;
 }

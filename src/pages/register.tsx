@@ -4,6 +4,7 @@ import { gql } from "apollo-boost";
 import { LoginPayload } from "../App";
 import { RouteComponentProps } from "react-router";
 import { withRouter } from "react-router-dom";
+import "./forms.scss";
 
 const ATTEMPT_REGISTER = gql`
   mutation authenticate(
@@ -43,6 +44,19 @@ interface IProps {
   setUser: (payload: LoginPayload) => void;
 }
 
+interface IResponseErrors {
+  email?: string;
+  password?: string;
+  confPassword?: string;
+  minecraftName?: string;
+  dob?: string;
+  whereHeard?: string;
+  moddedExperience?: string;
+  knownMembers?: string;
+  interestedServers?: string;
+  aboutUser?: string;
+}
+
 const Register = (props: RouteComponentProps & IProps) => {
   const emailRef = React.createRef<HTMLInputElement>();
   const passwordRef = React.createRef<HTMLInputElement>();
@@ -59,6 +73,11 @@ const Register = (props: RouteComponentProps & IProps) => {
   const [attemptRegister, { data, loading, error }] = useMutation(
     ATTEMPT_REGISTER
   );
+
+  let errors: IResponseErrors = {};
+  if (error) {
+    errors = JSON.parse(error.message.replace("GraphQL error: ", ""));
+  }
 
   if (data) {
     setTimeout(() => {
@@ -104,11 +123,10 @@ const Register = (props: RouteComponentProps & IProps) => {
 
   return (
     <div>
-      {error && <div>{error.message.replace("GraphQL error: ", "")}</div>}
       <div className="auth-form auth-form-wide">
         <form method="POST" onSubmit={formSubmitted}>
           {/*e-mail*/}
-          <div className="form-group">
+          <div className={`form-group ${errors.email ? "error" : ""}`}>
             <label htmlFor="email">E-mail Address</label>
             <input
               disabled={loading}
@@ -119,10 +137,11 @@ const Register = (props: RouteComponentProps & IProps) => {
               required={true}
               autoComplete="email"
             />
+            {errors.email && <div>{errors.email} </div>}
           </div>
 
           {/*password*/}
-          <div className="form-group">
+          <div className={`form-group ${errors.password ? "error" : ""}`}>
             <label htmlFor="password">Password</label>
             <input
               disabled={loading}
@@ -133,10 +152,11 @@ const Register = (props: RouteComponentProps & IProps) => {
               required={true}
               autoComplete="new-password"
             />
+            {errors.password && <div>{errors.password} </div>}
           </div>
 
           {/*confirm password*/}
-          <div className="form-group">
+          <div className={`form-group ${errors.confPassword ? "error" : ""}`}>
             <label htmlFor="confPassword">Confirm Password</label>
             <input
               disabled={loading}
@@ -147,10 +167,11 @@ const Register = (props: RouteComponentProps & IProps) => {
               required={true}
               autoComplete="new-password"
             />
+            {errors.confPassword && <div>{errors.confPassword} </div>}
           </div>
 
           {/*minecraft name*/}
-          <div className="form-group">
+          <div className={`form-group ${errors.minecraftName ? "error" : ""}`}>
             <label htmlFor="mcName">Minecraft Name</label>
             <input
               disabled={loading}
@@ -160,10 +181,11 @@ const Register = (props: RouteComponentProps & IProps) => {
               ref={mcNameRef}
               required={true}
             />
+            {errors.minecraftName && <div>{errors.minecraftName} </div>}
           </div>
 
           {/*date of birth*/}
-          <div className="form-group">
+          <div className={`form-group ${errors.dob ? "error" : ""}`}>
             <label htmlFor="dob">Date of Birth</label>
             <input
               disabled={loading}
@@ -173,10 +195,11 @@ const Register = (props: RouteComponentProps & IProps) => {
               ref={dobRef}
               required={true}
             />
+            {errors.dob && <div>{errors.dob} </div>}
           </div>
 
           {/*Where did you hear about Madhouse Miners?*/}
-          <div className="form-group">
+          <div className={`form-group ${errors.whereHeard ? "error" : ""}`}>
             <label htmlFor="whereHeard">
               Where did you hear about Madhouse Miners?
             </label>
@@ -188,10 +211,13 @@ const Register = (props: RouteComponentProps & IProps) => {
               ref={whereHeardRef}
               required={true}
             />
+            {errors.whereHeard && <div>{errors.whereHeard} </div>}
           </div>
 
           {/*What experience do you have with modded Minecraft?*/}
-          <div className="form-group">
+          <div
+            className={`form-group ${errors.moddedExperience ? "error" : ""}`}
+          >
             <label htmlFor="moddedExperience">
               What experience do you have with modded Minecraft?
             </label>
@@ -203,10 +229,11 @@ const Register = (props: RouteComponentProps & IProps) => {
               ref={moddedExperienceRef}
               required={true}
             />
+            {errors.moddedExperience && <div>{errors.moddedExperience} </div>}
           </div>
 
           {/*Do you know any other members of our community? If so, what is their minecraft name?*/}
-          <div className="form-group">
+          <div className={`form-group ${errors.knownMembers ? "error" : ""}`}>
             <label htmlFor="knownMembers">
               Do you know any other members of our community? If so, what is
               their minecraft name?
@@ -219,10 +246,13 @@ const Register = (props: RouteComponentProps & IProps) => {
               ref={knownMembersRef}
               required={true}
             />
+            {errors.knownMembers && <div>{errors.knownMembers} </div>}
           </div>
 
           {/*Which of our servers are you mainly interested in and why?*/}
-          <div className="form-group">
+          <div
+            className={`form-group ${errors.interestedServers ? "error" : ""}`}
+          >
             <label htmlFor="interestedServers">
               Which of our servers are you mainly interested in and why?
             </label>
@@ -234,10 +264,11 @@ const Register = (props: RouteComponentProps & IProps) => {
               ref={interestedServersRef}
               required={true}
             />
+            {errors.interestedServers && <div>{errors.interestedServers} </div>}
           </div>
 
           {/*Tell us a bit about yourself (e.g. What mods are you mainly interest in, what style of building do you like to do?)*/}
-          <div className="form-group">
+          <div className={`form-group ${errors.aboutUser ? "error" : ""}`}>
             <label htmlFor="aboutUser">
               Tell us a bit about yourself (e.g. What mods are you mainly
               interest in, what style of building do you like to do?)
@@ -250,6 +281,7 @@ const Register = (props: RouteComponentProps & IProps) => {
               ref={aboutUserRef}
               required={true}
             />
+            {errors.aboutUser && <div>{errors.aboutUser} </div>}
           </div>
 
           <button type="submit" disabled={loading}>

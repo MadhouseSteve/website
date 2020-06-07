@@ -2,7 +2,7 @@ import React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { withRouter } from "react-router-dom";
 import { gql } from "apollo-boost";
-import "./login.scss";
+import "./forms.scss";
 import { RouteComponentProps } from "react-router";
 import { LoginPayload } from "../App";
 

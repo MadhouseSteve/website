@@ -10,19 +10,26 @@ import Denied from "./Denied";
 import None from "./None";
 import Submitted from "./Submitted";
 
-export default () => {
+interface IProps {
+  status?: string;
+  feedback?: string;
+}
+
+export default (props: IProps) => {
   const user = React.useContext(UserContext);
 
   if (!user) {
     return null;
   }
 
-  switch (user.whitelist.status) {
+  switch (props.status ?? user.whitelist.status) {
     case WhitelistStatus.REQUEST_FOR_INFO:
-      return <RequestForInfo feedback={user.whitelist.feedback} />;
+      return (
+        <RequestForInfo feedback={props.feedback ?? user.whitelist.feedback} />
+      );
 
     case WhitelistStatus.DENIED:
-      return <Denied feedback={user.whitelist.feedback} />;
+      return <Denied feedback={props.feedback ?? user.whitelist.feedback} />;
 
     case WhitelistStatus.NONE:
       return <None />;

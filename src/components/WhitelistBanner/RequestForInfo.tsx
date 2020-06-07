@@ -18,7 +18,7 @@ const banner = ({ feedback, history }: RouteComponentProps & IProps) => {
       Your whitelist application has been reviewed and we require further
       information.
       <br />
-      {feedback}
+      <div className="feedback">{feedback}</div>
       <br />
       Click here to proceed to the whitelisting form. Please contact us using
       Discord if you need any assistance.

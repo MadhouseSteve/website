@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ApolloClient, { gql } from "apollo-boost";
+import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 import Homepage from "./pages/homepage";
@@ -9,11 +10,10 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Whitelist from "./pages/whitelist";
 
-import WhitelistBanner from "./components/WhitelistBanner";
-
 import User from "./models/User";
 
 const apolloClient = new ApolloClient({
+  cache: new InMemoryCache(),
   request: (operation) => {
     const token = sessionStorage.getItem("token");
     operation.setContext({
@@ -84,7 +84,6 @@ export default () => {
       <UserContext.Provider value={user}>
         <Router>
           <NavBar doLogout={doLogout} />
-          <WhitelistBanner />
           <div id="content">
             <Switch>
               <Route path="/" exact={true}>

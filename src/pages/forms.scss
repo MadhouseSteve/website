@@ -42,3 +42,12 @@ button {
 .form-group {
   padding: 10px;
 }
+
+.form-error {
+  background-color: #ffd2d2;
+  border: 1px solid darken(#ffd2d2, 20%);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
+}

@@ -52,8 +52,12 @@ const Login = (props: RouteComponentProps & IProps) => {
 
   return (
     <div>
-      {error && <div>{error.message.replace("GraphQL error: ", "")}</div>}
       <div className="auth-form">
+        {error && (
+          <div className="form-error">
+            {error.message.replace("GraphQL error: ", "")}
+          </div>
+        )}
         <form method="POST" onSubmit={formSubmitted}>
           <div className="form-group">
             <label htmlFor="email">E-mail Address</label>

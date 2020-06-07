@@ -1,9 +1,91 @@
 import React from "react";
+import { useMutation } from "@apollo/react-hooks";
+import { withRouter } from "react-router-dom";
+import { gql } from "apollo-boost";
+import "./login.scss";
+import { RouteComponentProps } from "react-router";
+import { LoginPayload } from "../App";
 
-export default () => (
-  <div>
-    <form>
-      <input type="email" id="email" name="email" />
-    </form>
-  </div>
-);
+const ATTEMPT_LOGIN = gql`
+  mutation authenticate($email: String!, $password: String!) {
+    authenticate(email: $email, password: $password) {
+      token
+      user {
+        id
+        displayName
+      }
+    }
+  }
+`;
+
+interface IProps {
+  setUser: (payload: LoginPayload) => void;
+}
+
+const Login = (props: RouteComponentProps & IProps) => {
+  const emailRef = React.createRef<HTMLInputElement>();
+  const passwordRef = React.createRef<HTMLInputElement>();
+  const [attemptLogin, { data, loading, error }] = useMutation(ATTEMPT_LOGIN);
+
+  if (data) {
+    setTimeout(() => {
+      props.setUser(data.authenticate);
+      props.history.replace("/");
+    });
+    return null;
+  }
+
+  async function formSubmitted(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!emailRef.current || !passwordRef.current) {
+      return;
+    }
+
+    await attemptLogin({
+      variables: {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      },
+    });
+  }
+
+  return (
+    <div>
+      {error && <div>{error.message.replace("GraphQL error: ", "")}</div>}
+      <div className="auth-form">
+        <form method="POST" onSubmit={formSubmitted}>
+          <div className="form-group">
+            <label htmlFor="email">E-mail Address</label>
+            <input
+              disabled={loading}
+              type="email"
+              id="email"
+              name="email"
+              ref={emailRef}
+              required={true}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              disabled={loading}
+              type="password"
+              id="password"
+              name="password"
+              ref={passwordRef}
+              required={true}
+            />
+          </div>
+
+          <button type="submit" disabled={loading}>
+            Log In
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default withRouter(Login);

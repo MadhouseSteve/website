@@ -1,36 +1,96 @@
 import React from "react";
 import NavBar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ApolloClient from "apollo-boost";
+import ApolloClient, { gql } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 import Homepage from "./pages/homepage";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import User from "./models/User";
 
 const apolloClient = new ApolloClient({
+  request: (operation) => {
+    const token = sessionStorage.getItem("token");
+    operation.setContext({
+      headers: {
+        authorization: token ? `${token}` : "",
+      },
+    });
+  },
   uri: "http://localhost:8080/graphql",
 });
 
+export const UserContext = React.createContext<User | null>(null);
+
+export interface LoginPayload {
+  user: User;
+  token: string;
+}
+
+async function fetchUser(): Promise<User | null> {
+  const FETCH_PROFILE = gql`
+    query {
+      profile {
+        id
+        email
+        displayName
+      }
+    }
+  `;
+
+  const { data } = await apolloClient.query({ query: FETCH_PROFILE });
+
+  return data.profile;
+}
+
 export default () => {
+  const [user, setUser] = React.useState<User | null>(null);
+  const [token, setToken] = React.useState<string | null>(
+    sessionStorage.getItem("token")
+  );
+
+  React.useEffect(() => {
+    if (token) {
+      sessionStorage.setItem("token", token);
+      fetchUser()
+        .then(setUser)
+        .catch(() => sessionStorage.removeItem("token"));
+    } else {
+      sessionStorage.removeItem("token");
+      setUser(null);
+    }
+  }, [token]);
+
+  function loginSuccess(payload: LoginPayload) {
+    setToken(payload.token);
+  }
+
+  function doLogout(e: React.MouseEvent) {
+    e.preventDefault();
+    setToken(null);
+  }
+
   return (
     <ApolloProvider client={apolloClient}>
-      <Router>
-        <NavBar />
-        <div id="content">
-          <Switch>
-            <Route path="/" exact={true}>
-              <Homepage />
-            </Route>
-            <Route path="/login" exact={true}>
-              <Login />
-            </Route>
-            <Route path="/register" exact={true}>
-              <Register />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+      <UserContext.Provider value={user}>
+        <Router>
+          <NavBar doLogout={doLogout} />
+          <div id="content">
+            <Switch>
+              <Route path="/" exact={true}>
+                <Homepage />
+              </Route>
+              <Route path="/login" exact={true}>
+                <Login setUser={loginSuccess} />
+              </Route>
+              <Route path="/register" exact={true}>
+                <Register />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </UserContext.Provider>
     </ApolloProvider>
   );
 };

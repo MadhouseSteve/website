@@ -34,7 +34,6 @@ export default (props: { section: string }) => {
   const serverList = data.servers.map((server: IServerStatus) => (
     <ServerStatus key={server.id} {...server} />
   ));
-  console.debug(data);
 
   return (
     <div className="server-status-section">

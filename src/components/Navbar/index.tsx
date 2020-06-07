@@ -4,9 +4,19 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import "./navbar.scss";
 import { RouteComponentProps } from "react-router";
+import { UserContext } from "../../App";
+import User from "../../models/User";
 
-const nav = (props: RouteComponentProps) => {
+import Anonymous from "./Anonymous";
+import UserMenu from "./User";
+
+interface IProps {
+  doLogout: (e: React.MouseEvent) => void;
+}
+
+const nav = (props: RouteComponentProps & IProps) => {
   const [navState, setNavState] = React.useState<boolean>(false);
+  const user = React.useContext<User | null>(UserContext);
 
   function navigateClicked(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
@@ -17,6 +27,20 @@ const nav = (props: RouteComponentProps) => {
 
   function switchNav() {
     setNavState(!navState);
+  }
+
+  let Menu = (
+    <Anonymous navState={navState} navigateClicked={navigateClicked} />
+  );
+  console.log(user);
+  if (user) {
+    Menu = (
+      <UserMenu
+        navState={navState}
+        navigateClicked={navigateClicked}
+        doLogout={props.doLogout}
+      />
+    );
   }
 
   return (
@@ -57,20 +81,7 @@ const nav = (props: RouteComponentProps) => {
         <div />
       </div>
 
-      <div className="nav-right">
-        <ul className={navState ? "open" : ""}>
-          <li>
-            <a href="/register" onClick={navigateClicked}>
-              Register
-            </a>
-          </li>
-          <li>
-            <a href="/login" onClick={navigateClicked}>
-              Login
-            </a>
-          </li>
-        </ul>
-      </div>
+      <div className="nav-right">{Menu}</div>
     </div>
   );
 };

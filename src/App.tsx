@@ -7,6 +7,10 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import Homepage from "./pages/homepage";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Whitelist from "./pages/whitelist";
+
+import WhitelistBanner from "./components/WhitelistBanner";
+
 import User from "./models/User";
 
 const apolloClient = new ApolloClient({
@@ -35,6 +39,10 @@ async function fetchUser(): Promise<User | null> {
         id
         email
         displayName
+        whitelist {
+          feedback
+          status
+        }
       }
     }
   `;
@@ -76,6 +84,7 @@ export default () => {
       <UserContext.Provider value={user}>
         <Router>
           <NavBar doLogout={doLogout} />
+          <WhitelistBanner />
           <div id="content">
             <Switch>
               <Route path="/" exact={true}>
@@ -85,7 +94,10 @@ export default () => {
                 <Login setUser={loginSuccess} />
               </Route>
               <Route path="/register" exact={true}>
-                <Register />
+                <Register setUser={loginSuccess} />
+              </Route>
+              <Route path="/whitelist" exact={true}>
+                <Whitelist />
               </Route>
             </Switch>
           </div>

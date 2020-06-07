@@ -32,7 +32,6 @@ const nav = (props: RouteComponentProps & IProps) => {
   let Menu = (
     <Anonymous navState={navState} navigateClicked={navigateClicked} />
   );
-  console.log(user);
   if (user) {
     Menu = (
       <UserMenu

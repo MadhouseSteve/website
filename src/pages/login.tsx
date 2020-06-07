@@ -64,6 +64,7 @@ const Login = (props: RouteComponentProps & IProps) => {
               name="email"
               ref={emailRef}
               required={true}
+              autoComplete="username"
             />
           </div>
 
@@ -76,6 +77,7 @@ const Login = (props: RouteComponentProps & IProps) => {
               name="password"
               ref={passwordRef}
               required={true}
+              autoComplete="current-password"
             />
           </div>
 

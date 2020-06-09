@@ -1,10 +1,13 @@
 import React from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import "./forms.scss";
+import "../styles/forms.scss";
 import moment from "moment";
 import { WhitelistStatus } from "../models/User";
 import WhitelistBanner from "../components/WhitelistBanner";
+import { UserContext } from "../App";
+import { RouteComponentProps } from "react-router";
+import { withRouter } from "react-router-dom";
 
 const UPDATE_WHITELIST = gql`
   mutation updateWhitelist(
@@ -60,7 +63,13 @@ interface IResponseErrors {
   aboutUser?: string;
 }
 
-const Whitelist = () => {
+const Whitelist = (props: RouteComponentProps) => {
+  const userContext = React.useContext(UserContext);
+  if (!userContext) {
+    props.history.replace("/");
+    return null;
+  }
+
   const whereHeardRef = React.createRef<HTMLInputElement>();
   const moddedExperienceRef = React.createRef<HTMLInputElement>();
   const knownMembersRef = React.createRef<HTMLInputElement>();
@@ -257,4 +266,4 @@ const Whitelist = () => {
   );
 };
 
-export default Whitelist;
+export default withRouter(Whitelist);

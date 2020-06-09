@@ -11,7 +11,7 @@ import Anonymous from "./Anonymous";
 import UserMenu from "./User";
 
 interface IProps {
-  doLogout: (e: React.MouseEvent) => void;
+  setToken: (token: string | null) => void;
 }
 
 const nav = (props: RouteComponentProps & IProps) => {
@@ -23,6 +23,12 @@ const nav = (props: RouteComponentProps & IProps) => {
 
     setNavState(false);
     props.history.push(e.currentTarget.pathname);
+  }
+
+  function doLogout(e: React.MouseEvent) {
+    e.preventDefault();
+    props.setToken(null);
+    props.history.push("/");
   }
 
   function switchNav() {
@@ -37,7 +43,7 @@ const nav = (props: RouteComponentProps & IProps) => {
       <UserMenu
         navState={navState}
         navigateClicked={navigateClicked}
-        doLogout={props.doLogout}
+        doLogout={doLogout}
       />
     );
   }

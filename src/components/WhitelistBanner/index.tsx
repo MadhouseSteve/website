@@ -9,6 +9,7 @@ import RequestForInfo from "./RequestForInfo";
 import Denied from "./Denied";
 import None from "./None";
 import Submitted from "./Submitted";
+import Accepted from "./Accepted";
 
 interface IProps {
   status?: string;
@@ -36,6 +37,9 @@ export default (props: IProps) => {
 
     case WhitelistStatus.SUBMITTED:
       return <Submitted />;
+
+    case WhitelistStatus.ACCEPTED:
+      return <Accepted />;
   }
 
   return null;

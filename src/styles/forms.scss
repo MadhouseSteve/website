@@ -1,4 +1,4 @@
-@import "../styles/colours";
+@import "colours";
 
 .auth-form {
   max-width: 350px;
@@ -25,6 +25,22 @@ button {
   border-radius: 3px;
   background-color: $primary;
   margin-left: 10px;
+
+  &.DENIED {
+    border: 1px solid darken($primary, 10%);
+    background-color: $primary;
+    color: white;
+  }
+  &.REQUEST_FOR_INFO {
+    border: 1px solid darken($primary, 30%);
+    background-color: darken($primary, 20%);
+    color: white;
+  }
+  &.ACCEPTED {
+    border: 1px solid darken($primary, 35%);
+    background-color: darken($primary, 25%);
+    color: white;
+  }
 }
 
 .form-group.error {
@@ -50,4 +66,10 @@ button {
   margin-bottom: 10px;
   text-align: center;
   padding: 10px;
+}
+
+.agree-terms {
+  margin: 10px 0 20px;
+  padding: 10px;
+  font-size: 0.9em;
 }

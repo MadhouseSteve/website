@@ -12,7 +12,7 @@ const SERVER_LIST = gql`
       id
       name
       version
-      playerCount
+      playercount
       status
     }
   }

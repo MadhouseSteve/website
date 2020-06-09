@@ -10,5 +10,6 @@ export default interface User {
   id: string;
   email: string;
   display: string;
+  reviewer: boolean;
   whitelist: { status: WhitelistStatus; feedback: string };
 }

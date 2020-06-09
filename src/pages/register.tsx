@@ -4,7 +4,7 @@ import { gql } from "apollo-boost";
 import { LoginPayload } from "../App";
 import { RouteComponentProps } from "react-router";
 import { withRouter } from "react-router-dom";
-import "./forms.scss";
+import "../styles/forms.scss";
 
 const ATTEMPT_REGISTER = gql`
   mutation authenticate(
@@ -35,6 +35,7 @@ const ATTEMPT_REGISTER = gql`
       user {
         id
         displayName
+        reviewer
       }
     }
   }
@@ -282,6 +283,14 @@ const Register = (props: RouteComponentProps & IProps) => {
               required={true}
             />
             {errors.aboutUser && <div>{errors.aboutUser} </div>}
+          </div>
+
+          <div className="agree-terms">
+            By submitting this form you agree that we can store the above
+            information in order to process your whitelist application. We will
+            store this information while your account is active. If you wish for
+            us to remove this information you can do so by contacting us on
+            Discord.
           </div>
 
           <button type="submit" disabled={loading}>

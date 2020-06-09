@@ -10,6 +10,6 @@ export default interface ServerStatus {
   id: string;
   name: string;
   version: string;
-  playerCount: number;
+  playercount: number;
   status: ServerStatuses;
 }

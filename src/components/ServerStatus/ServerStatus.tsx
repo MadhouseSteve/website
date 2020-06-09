@@ -8,7 +8,7 @@ export default (props: ServerStatus) => {
     <div className="server-status">
       <div className="server-status-right">
         <Status status={props.status} />
-        <div className="server-player-count">{props.playerCount} Players</div>
+        <div className="server-player-count">{props.playercount} Players</div>
       </div>
       <div className="server-status-left">
         <div className="server-name">{props.name}</div>

@@ -2,7 +2,7 @@ import React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { withRouter } from "react-router-dom";
 import { gql } from "apollo-boost";
-import "./forms.scss";
+import "../styles/forms.scss";
 import { RouteComponentProps } from "react-router";
 import { LoginPayload } from "../App";
 
@@ -13,6 +13,7 @@ const ATTEMPT_LOGIN = gql`
       user {
         id
         displayName
+        reviewer
       }
     }
   }

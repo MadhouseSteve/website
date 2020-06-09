@@ -6,6 +6,8 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 import Homepage from "./pages/homepage";
+import ReviewList from "./pages/review_list";
+import ReviewApplication from "./pages/review_application";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Whitelist from "./pages/whitelist";
@@ -39,6 +41,7 @@ async function fetchUser(): Promise<User | null> {
         id
         email
         displayName
+        reviewer
         whitelist {
           feedback
           status
@@ -67,6 +70,7 @@ export default () => {
     } else {
       sessionStorage.removeItem("token");
       setUser(null);
+      apolloClient.resetStore();
     }
   }, [token]);
 
@@ -74,16 +78,11 @@ export default () => {
     setToken(payload.token);
   }
 
-  function doLogout(e: React.MouseEvent) {
-    e.preventDefault();
-    setToken(null);
-  }
-
   return (
     <ApolloProvider client={apolloClient}>
       <UserContext.Provider value={user}>
         <Router>
-          <NavBar doLogout={doLogout} />
+          <NavBar setToken={setToken} />
           <div id="content">
             <Switch>
               <Route path="/" exact={true}>
@@ -97,6 +96,12 @@ export default () => {
               </Route>
               <Route path="/whitelist" exact={true}>
                 <Whitelist />
+              </Route>
+              <Route path="/whitelist/review" exact={true}>
+                <ReviewList />
+              </Route>
+              <Route path="/whitelist/review/:id" exact={true}>
+                <ReviewApplication />
               </Route>
             </Switch>
           </div>

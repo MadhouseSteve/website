@@ -1,0 +1,63 @@
+@import "colours.scss";
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #e0e0e0;
+}
+
+td,
+th {
+  padding: 10px;
+}
+
+th,
+td {
+  border-top: 1px solid #c0c0c0;
+  border-left: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
+}
+
+th {
+  border-top: none;
+}
+
+.capitalCase {
+  text-transform: capitalize;
+}
+
+.show-large {
+  display: none;
+  @media (min-width: $breakpoint) {
+    display: block;
+  }
+}
+
+.clickable {
+  text-decoration: underline;
+  @media (min-width: $breakpoint) {
+    text-decoration: none;
+  }
+}
+
+.review-table {
+  th {
+    text-align: left;
+    background-color: #e0e0e0;
+    border-top: 1px solid #c0c0c0;
+  }
+  th,
+  td {
+    border-bottom: 1px solid #c0c0c0;
+  }
+  td {
+    background-color: #f3f3f3;
+  }
+}
+
+.center {
+  text-align: center;
+}

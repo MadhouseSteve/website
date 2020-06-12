@@ -71,21 +71,11 @@ const Register = (props: RouteComponentProps & IProps) => {
   const interestedServersRef = React.createRef<HTMLInputElement>();
   const aboutUserRef = React.createRef<HTMLInputElement>();
 
-  const [attemptRegister, { data, loading, error }] = useMutation(
-    ATTEMPT_REGISTER
-  );
+  const [attemptRegister, { loading, error }] = useMutation(ATTEMPT_REGISTER);
 
   let errors: IResponseErrors = {};
   if (error) {
     errors = JSON.parse(error.message.replace("GraphQL error: ", ""));
-  }
-
-  if (data) {
-    setTimeout(() => {
-      props.setUser(data.register);
-      props.history.replace("/");
-    });
-    return null;
   }
 
   async function formSubmitted(e: React.FormEvent<HTMLFormElement>) {
@@ -106,7 +96,7 @@ const Register = (props: RouteComponentProps & IProps) => {
       return;
     }
 
-    await attemptRegister({
+    const response = await attemptRegister({
       variables: {
         email: emailRef.current.value,
         password: passwordRef.current.value,
@@ -120,6 +110,8 @@ const Register = (props: RouteComponentProps & IProps) => {
         aboutUser: aboutUserRef.current.value,
       },
     });
+    props.setUser(response.data.register);
+    props.history.replace("/");
   }
 
   return (

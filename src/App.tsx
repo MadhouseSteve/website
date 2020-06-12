@@ -13,6 +13,8 @@ import Register from "./pages/register";
 import Whitelist from "./pages/whitelist";
 
 import User from "./models/User";
+import ForgottenPW from "./pages/forgot_pw";
+import ResetPW from "./pages/reset_pw";
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
@@ -93,6 +95,12 @@ export default () => {
               </Route>
               <Route path="/register" exact={true}>
                 <Register setUser={loginSuccess} />
+              </Route>
+              <Route path="/forgot_pw" exact={true}>
+                <ForgottenPW />
+              </Route>
+              <Route path="/reset_pw/:token" exact={true}>
+                <ResetPW setUser={loginSuccess} />
               </Route>
               <Route path="/whitelist" exact={true}>
                 <Whitelist />

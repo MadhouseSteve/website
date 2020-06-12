@@ -26,15 +26,7 @@ interface IProps {
 const Login = (props: RouteComponentProps & IProps) => {
   const emailRef = React.createRef<HTMLInputElement>();
   const passwordRef = React.createRef<HTMLInputElement>();
-  const [attemptLogin, { data, loading, error }] = useMutation(ATTEMPT_LOGIN);
-
-  if (data) {
-    setTimeout(() => {
-      props.setUser(data.authenticate);
-      props.history.replace("/");
-    });
-    return null;
-  }
+  const [attemptLogin, { loading, error }] = useMutation(ATTEMPT_LOGIN);
 
   async function formSubmitted(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -43,12 +35,15 @@ const Login = (props: RouteComponentProps & IProps) => {
       return;
     }
 
-    await attemptLogin({
+    const response = await attemptLogin({
       variables: {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       },
     });
+
+    props.setUser(response.data.authenticate);
+    props.history.replace("/");
   }
 
   return (

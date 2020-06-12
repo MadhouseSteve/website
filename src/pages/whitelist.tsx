@@ -155,7 +155,8 @@ const Whitelist = (props: RouteComponentProps) => {
               disabled={
                 mutation.loading ||
                 data.whitelist.status === WhitelistStatus.ACCEPTED ||
-                data.whitelist.status === WhitelistStatus.DENIED
+                data.whitelist.status === WhitelistStatus.DENIED ||
+                data.whitelist.status === WhitelistStatus.NONE
               }
               type="text"
               id="whereHeard"
@@ -178,7 +179,8 @@ const Whitelist = (props: RouteComponentProps) => {
               disabled={
                 mutation.loading ||
                 data.whitelist.status === WhitelistStatus.ACCEPTED ||
-                data.whitelist.status === WhitelistStatus.DENIED
+                data.whitelist.status === WhitelistStatus.DENIED ||
+                data.whitelist.status === WhitelistStatus.NONE
               }
               type="text"
               id="moddedExperience"
@@ -200,7 +202,8 @@ const Whitelist = (props: RouteComponentProps) => {
               disabled={
                 mutation.loading ||
                 data.whitelist.status === WhitelistStatus.ACCEPTED ||
-                data.whitelist.status === WhitelistStatus.DENIED
+                data.whitelist.status === WhitelistStatus.DENIED ||
+                data.whitelist.status === WhitelistStatus.NONE
               }
               type="text"
               id="knownMembers"
@@ -223,7 +226,8 @@ const Whitelist = (props: RouteComponentProps) => {
               disabled={
                 mutation.loading ||
                 data.whitelist.status === WhitelistStatus.ACCEPTED ||
-                data.whitelist.status === WhitelistStatus.DENIED
+                data.whitelist.status === WhitelistStatus.DENIED ||
+                data.whitelist.status === WhitelistStatus.NONE
               }
               type="text"
               id="interestedServers"
@@ -245,7 +249,8 @@ const Whitelist = (props: RouteComponentProps) => {
               disabled={
                 mutation.loading ||
                 data.whitelist.status === WhitelistStatus.ACCEPTED ||
-                data.whitelist.status === WhitelistStatus.DENIED
+                data.whitelist.status === WhitelistStatus.DENIED ||
+                data.whitelist.status === WhitelistStatus.NONE
               }
               type="text"
               id="aboutUser"
@@ -257,9 +262,13 @@ const Whitelist = (props: RouteComponentProps) => {
             {errors.aboutUser && <div>{errors.aboutUser} </div>}
           </div>
 
-          <button type="submit" disabled={loading}>
-            Update Application
-          </button>
+          {data.whitelist.status !== WhitelistStatus.ACCEPTED &&
+            data.whitelist.status !== WhitelistStatus.DENIED &&
+            data.whitelist.status !== WhitelistStatus.NONE && (
+              <button type="submit" disabled={loading}>
+                Update Application
+              </button>
+            )}
         </form>
       </div>
     </div>

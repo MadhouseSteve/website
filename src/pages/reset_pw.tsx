@@ -88,11 +88,6 @@ const reset_pw = (props: RouteComponentProps<{ token: string }> & IProps) => {
   return (
     <div>
       <div className="auth-form">
-        {error && (
-          <div className="form-error">
-            {error!.message.replace("GraphQL error: ", "")}
-          </div>
-        )}
         {data && data.resetPassword && (
           <div className="form-success">
             A password reset link has been sent to your e-mail.

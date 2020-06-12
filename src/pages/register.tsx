@@ -1,9 +1,6 @@
 import React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import { LoginPayload } from "../App";
-import { RouteComponentProps } from "react-router";
-import { withRouter } from "react-router-dom";
 import "../styles/forms.scss";
 
 const ATTEMPT_REGISTER = gql`
@@ -30,20 +27,9 @@ const ATTEMPT_REGISTER = gql`
       knownMembers: $knownMembers
       interestedServers: $interestedServers
       aboutUser: $aboutUser
-    ) {
-      token
-      user {
-        id
-        displayName
-        reviewer
-      }
-    }
+    )
   }
 `;
-
-interface IProps {
-  setUser: (payload: LoginPayload) => void;
-}
 
 interface IResponseErrors {
   email?: string;
@@ -58,7 +44,7 @@ interface IResponseErrors {
   aboutUser?: string;
 }
 
-const Register = (props: RouteComponentProps & IProps) => {
+const Register = () => {
   const emailRef = React.createRef<HTMLInputElement>();
   const passwordRef = React.createRef<HTMLInputElement>();
   const confPasswordRef = React.createRef<HTMLInputElement>();
@@ -71,11 +57,22 @@ const Register = (props: RouteComponentProps & IProps) => {
   const interestedServersRef = React.createRef<HTMLInputElement>();
   const aboutUserRef = React.createRef<HTMLInputElement>();
 
-  const [attemptRegister, { loading, error }] = useMutation(ATTEMPT_REGISTER);
+  const [attemptRegister, { data, loading, error }] = useMutation(
+    ATTEMPT_REGISTER
+  );
 
   let errors: IResponseErrors = {};
   if (error) {
     errors = JSON.parse(error.message.replace("GraphQL error: ", ""));
+  }
+
+  if (data && data.register) {
+    return (
+      <div>
+        Thank you for your registration. Please check your e-mail to complete
+        registering.
+      </div>
+    );
   }
 
   async function formSubmitted(e: React.FormEvent<HTMLFormElement>) {
@@ -96,7 +93,7 @@ const Register = (props: RouteComponentProps & IProps) => {
       return;
     }
 
-    const response = await attemptRegister({
+    await attemptRegister({
       variables: {
         email: emailRef.current.value,
         password: passwordRef.current.value,
@@ -110,8 +107,6 @@ const Register = (props: RouteComponentProps & IProps) => {
         aboutUser: aboutUserRef.current.value,
       },
     });
-    props.setUser(response.data.register);
-    props.history.replace("/");
   }
 
   return (
@@ -294,4 +289,4 @@ const Register = (props: RouteComponentProps & IProps) => {
   );
 };
 
-export default withRouter(Register);
+export default Register;

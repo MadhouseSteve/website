@@ -27,7 +27,7 @@ const apolloClient = new ApolloClient({
       },
     });
   },
-  uri: "http://localhost:8080/graphql",
+  uri: process.env.API_URL,
 });
 
 export const UserContext = React.createContext<User | null>(null);

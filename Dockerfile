@@ -1,6 +1,6 @@
 FROM node:latest AS builder
 
-ARG API_URL
+ARG API_URL=https://api.madhouseminers.com/graphql
 ENV API_URL=$API_URL
 
 WORKDIR /src

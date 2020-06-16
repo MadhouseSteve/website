@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-deployment
+  labels:
+    app: website
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+        - name: website
+          image: madhouseminers/website:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels:
+    app: api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: madhouseminers/api:latest
+          ports:
+            - containerPort: 9000
+          env:
+            - name: PGHOST
+              value: private-mhm-website-do-user-168670-0.a.db.ondigitalocean.com
+            - name: PGUSER
+              value: doadmin
+            - name: PGPASSWORD
+              value: cvec5dqguvoryl34
+            - name: PGDATABASE
+              value: defaultdb
+            - name: PGPORT
+              value: "25060"
+              # postgresql://doadmin:cvec5dqguvoryl34@mhm-website-do-user-168670-0.a.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+            - name: CHATSHARE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: chatshare
+                  name: passwords
+            - name: EMAIL_HOST
+              value: mx.madhouseminers.com
+            - name: EMAIL_USER
+              value: support@madhouseminers.com
+            - name: EMAIL_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: email
+                  name: passwords
+            - name: BASE_URL
+              value: https://api.madhouseminers.com
+            - name: SITE_URL
+              value: https://www.madhouseminers.com
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: jwt
+                  name: passwords
+          imagePullPolicy: Always
+      initContainers:
+        - name: mhm-migrate
+          image: madhouseminers/api:latest
+          command: ['npm', 'run', 'migrate']
+          env:
+            - name: PGHOST
+              value: private-mhm-website-do-user-168670-0.a.db.ondigitalocean.com
+            - name: PGUSER
+              value: doadmin
+            - name: PGPASSWORD
+              value: cvec5dqguvoryl34
+            - name: PGDATABASE
+              value: defaultdb
+            - name: PGPORT
+              value: "25060"
+              # postgresql://doadmin:cvec5dqguvoryl34@mhm-website-do-user-168670-0.a.db.ondigitalocean.com:25060/defaultdb?sslmode=require

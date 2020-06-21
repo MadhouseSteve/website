@@ -8,6 +8,11 @@ interface IProps {
 export default (props: IProps) => (
   <ul className={props.navState ? "open" : ""}>
     <li>
+      <a href="/forgot_pw" onClick={props.navigateClicked}>
+        Reset Password
+      </a>
+    </li>
+    <li>
       <a href="/register" onClick={props.navigateClicked}>
         Register
       </a>

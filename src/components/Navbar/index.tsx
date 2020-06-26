@@ -9,6 +9,7 @@ import User from "../../models/User";
 
 import Anonymous from "./Anonymous";
 import UserMenu from "./User";
+import patreon from "../../images/become_a_patron_button@2x.png";
 
 interface IProps {
   setToken: (token: string | null) => void;
@@ -65,6 +66,7 @@ const nav = (props: RouteComponentProps & IProps) => {
       `}
           />
           <img
+            id="logo"
             src={logo.logo}
             srcSet={`
       ${logo.logo} 618w,
@@ -85,6 +87,14 @@ const nav = (props: RouteComponentProps & IProps) => {
         <div />
         <div />
       </div>
+
+      <a
+        href="https://www.patreon.com/madhouseminers"
+        target="_blank"
+        className="donate_link"
+      >
+        <img src={patreon} alt="Become a Patron via Patreon" />
+      </a>
 
       <div className="nav-right">{Menu}</div>
     </div>

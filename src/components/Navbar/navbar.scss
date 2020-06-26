@@ -20,7 +20,7 @@
   }
 }
 
-#nav-backdrop img {
+#nav-backdrop img#logo {
   max-width: 75%;
   max-height: 75%;
   animation: navLogoShow 1.5s ease-in-out 0.5s 1 forwards;
@@ -129,4 +129,19 @@ div.nav-right li a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.donate_link img {
+  width: 200px;
+  float: left;
+  clear: both;
+}
+
+.donate_link {
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  animation: showContent 0.5s ease-in-out 1.5s 1 forwards;
 }

@@ -6,7 +6,7 @@ import { getMainDefinition } from "apollo-utilities";
 import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-const api = process.env.API_URL;
+const api = process.env.API_URL || "://www.madhouseminers.com/graphql";
 const httpLink = new HttpLink({
   uri: `${process.env.NODE_ENV === "DEV" ? "http" : "https"}${api}`,
   headers: { authorization: process.env.GRAPHQL_TOKEN },

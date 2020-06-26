@@ -1,8 +1,6 @@
 import React from "react";
 import NavBar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ApolloClient, { gql } from "apollo-boost";
-import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 import Homepage from "./pages/homepage";
@@ -16,19 +14,8 @@ import User from "./models/User";
 import ForgottenPW from "./pages/forgot_pw";
 import ResetPW from "./pages/reset_pw";
 import Verify from "./pages/verify";
-
-const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  request: (operation) => {
-    const token = sessionStorage.getItem("token");
-    operation.setContext({
-      headers: {
-        authorization: token ? `${token}` : "",
-      },
-    });
-  },
-  uri: process.env.API_URL,
-});
+import { gql } from "apollo-boost";
+import { apolloClient } from "./graphql";
 
 export const UserContext = React.createContext<User | null>(null);
 
@@ -95,7 +82,7 @@ export default () => {
                 <Login setUser={loginSuccess} />
               </Route>
               <Route path="/register" exact={true}>
-                <Register setUser={loginSuccess} />
+                <Register />
               </Route>
               <Route path="/forgot_pw" exact={true}>
                 <ForgottenPW />

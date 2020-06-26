@@ -2,13 +2,24 @@ import React from "react";
 import ServerStatus from "./ServerStatus";
 import IServerStatus from "../../models/ServerStatus";
 
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useSubscription } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import "./index.scss";
 
 const SERVER_LIST = gql`
   query servers($category: String) {
     servers(category: $category) {
+      id
+      name
+      version
+      playercount
+      status
+    }
+  }
+`;
+const SERVER_LIST_SUB = gql`
+  subscription serverUpdated {
+    serverUpdated {
       id
       name
       version
@@ -24,6 +35,7 @@ export default (props: { section: string }) => {
       category: props.section,
     },
   });
+  useSubscription(SERVER_LIST_SUB);
 
   if (loading) {
     return <div>Loading</div>;

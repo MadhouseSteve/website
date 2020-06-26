@@ -51,11 +51,12 @@ const nav = (props: RouteComponentProps & IProps) => {
 
   return (
     <div id="nav-backdrop">
-      <a href="/" onClick={navigateClicked}>
-        <picture>
-          <source
-            type="image/webp"
-            srcSet={`
+      <nav>
+        <a href="/" onClick={navigateClicked}>
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`
       ${logoWebP.logo} 618w,
       ${logoWebP["logo@0.5x"]} 309w,
       ${logoWebP["logo@0.75x"]} 463w,
@@ -64,11 +65,11 @@ const nav = (props: RouteComponentProps & IProps) => {
       ${logoWebP["logo@3x"]} 1852w,
       ${logoWebP["logo@4x"]} 2468w
       `}
-          />
-          <img
-            id="logo"
-            src={logo.logo}
-            srcSet={`
+            />
+            <img
+              id="logo"
+              src={logo.logo}
+              srcSet={`
       ${logo.logo} 618w,
       ${logo["logo@0.5x"]} 309w,
       ${logo["logo@0.75x"]} 463w,
@@ -77,26 +78,28 @@ const nav = (props: RouteComponentProps & IProps) => {
       ${logo["logo@3x"]} 1852w,
       ${logo["logo@4x"]} 2468w
       `}
-            alt="Madhouse Miners Logo"
-          />
-        </picture>
-      </a>
+              alt="Madhouse Miners Logo"
+            />
+          </picture>
+        </a>
 
-      <div className="burger-menu" onClick={switchNav}>
-        <div />
-        <div />
-        <div />
-      </div>
+        <div className="burger-menu" onClick={switchNav}>
+          <div />
+          <div />
+          <div />
+        </div>
 
-      <a
-        href="https://www.patreon.com/madhouseminers"
-        target="_blank"
-        className="donate_link"
-      >
-        <img src={patreon} alt="Become a Patron via Patreon" />
-      </a>
+        <a
+          href="https://www.patreon.com/madhouseminers"
+          target="_blank"
+          className="donate_link"
+          rel="noreferrer"
+        >
+          <img src={patreon} alt="Become a Patron via Patreon" />
+        </a>
 
-      <div className="nav-right">{Menu}</div>
+        <div className="nav-right">{Menu}</div>
+      </nav>
     </div>
   );
 };

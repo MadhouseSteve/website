@@ -73,37 +73,39 @@ export default () => {
       <UserContext.Provider value={user}>
         <Router>
           <NavBar setToken={setToken} />
-          <div id="content">
-            <Switch>
-              <Route path="/" exact={true}>
-                <Homepage />
-              </Route>
-              <Route path="/login" exact={true}>
-                <Login setUser={loginSuccess} />
-              </Route>
-              <Route path="/register" exact={true}>
-                <Register />
-              </Route>
-              <Route path="/forgot_pw" exact={true}>
-                <ForgottenPW />
-              </Route>
-              <Route path="/reset_pw/:token" exact={true}>
-                <ResetPW setUser={loginSuccess} />
-              </Route>
-              <Route path="/verify/:token" exact={true}>
-                <Verify setUser={loginSuccess} />
-              </Route>
-              <Route path="/whitelist" exact={true}>
-                <Whitelist />
-              </Route>
-              <Route path="/whitelist/review" exact={true}>
-                <ReviewList />
-              </Route>
-              <Route path="/whitelist/review/:id" exact={true}>
-                <ReviewApplication />
-              </Route>
-            </Switch>
-          </div>
+          <main>
+            <div id="content">
+              <Switch>
+                <Route path="/" exact={true}>
+                  <Homepage />
+                </Route>
+                <Route path="/login" exact={true}>
+                  <Login setUser={loginSuccess} />
+                </Route>
+                <Route path="/register" exact={true}>
+                  <Register />
+                </Route>
+                <Route path="/forgot_pw" exact={true}>
+                  <ForgottenPW />
+                </Route>
+                <Route path="/reset_pw/:token" exact={true}>
+                  <ResetPW setUser={loginSuccess} />
+                </Route>
+                <Route path="/verify/:token" exact={true}>
+                  <Verify setUser={loginSuccess} />
+                </Route>
+                <Route path="/whitelist" exact={true}>
+                  <Whitelist />
+                </Route>
+                <Route path="/whitelist/review" exact={true}>
+                  <ReviewList />
+                </Route>
+                <Route path="/whitelist/review/:id" exact={true}>
+                  <ReviewApplication />
+                </Route>
+              </Switch>
+            </div>
+          </main>
         </Router>
       </UserContext.Provider>
     </ApolloProvider>

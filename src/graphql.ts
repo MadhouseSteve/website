@@ -2,14 +2,14 @@ import { HttpLink } from "apollo-link-http";
 import { WebSocketLink } from "apollo-link-ws";
 import { split } from "apollo-link";
 import { getMainDefinition } from "apollo-utilities";
-// import * as ws from "ws";
 import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { setContext } from "apollo-link-context";
 
 const api = process.env.API_URL || "://www.madhouseminers.com/graphql";
 const httpLink = new HttpLink({
   uri: `${process.env.NODE_ENV === "DEV" ? "http" : "https"}${api}`,
-  headers: { authorization: process.env.GRAPHQL_TOKEN },
+  headers: { authorization: sessionStorage.getItem("token") },
 });
 const wsLink = new WebSocketLink({
   uri: `${process.env.NODE_ENV === "DEV" ? "ws" : "wss"}${api}`,
@@ -32,7 +32,16 @@ const link = split(
   httpLink
 );
 
+const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      authorization: sessionStorage.getItem("token"),
+    },
+  };
+});
+
 export const apolloClient = new ApolloClient({
-  link,
+  link: authLink.concat(link),
   cache: new InMemoryCache(),
 });

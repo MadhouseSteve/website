@@ -52,6 +52,28 @@
     display: inline-block;
   }
 
+  .chat-status-indicator {
+    position: relative;
+    display: inline-block;
+    height: 13px;
+    width: 13px;
+    background-color: #707070;
+    border-radius: 50%;
+    top: 5px;
+    left: -13px;
+    border: 2px solid #1c1c1c;
+
+    &[data-status="ONLINE"] {
+      background-color: #277900;
+    }
+    &[data-status="DND"] {
+      background-color: #792700;
+    }
+    &[data-status="AWAY"] {
+      background-color: #797900;
+    }
+  }
+
   &-name {
     width: 150px;
     overflow: hidden;

@@ -20,6 +20,7 @@ export default (props: IProps) => {
           alt={props.user.name}
         />
       </picture>
+      <div className="chat-status-indicator" data-status={props.user.status} />
       <div className="chat-user-name">{props.user.name}</div>
       <div className="float-right">{props.user.playing}</div>
     </div>

@@ -37,13 +37,18 @@ export default () => {
   return (
     <div className="chat">
       <div className="chat-header">
-        <a href="https://discord.gg/ApNnwac" target="_blank">
+        <a
+          href="https://discord.gg/ApNnwac"
+          target="_blank"
+          aria-label="Join our Discord Server"
+          rel="noreferrer"
+        >
           <picture>
             <source
               srcSet={discordLogoWebp["discord@1.5x"]}
               type="image/webp"
             />
-            <img src={discordLogo["discord@1.5x"]} />
+            <img src={discordLogo["discord@1.5x"]} alt="Discord logo" />
           </picture>
         </a>
         <div className="float-right">{userList.length} members online</div>

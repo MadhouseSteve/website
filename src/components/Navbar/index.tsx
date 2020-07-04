@@ -56,6 +56,13 @@ const nav = (props: RouteComponentProps & IProps) => {
           <picture>
             <source
               type="image/webp"
+              sizes="(max-width: 1650px) 1235px,
+              (max-width: 2450px) 1852px,
+              (max-width: 3300px) 2468px,
+              (max-width: 412px) 309px,
+              (max-width: 620px) 463px,
+              (max-width: 1235px) 926px,
+                    618px"
               srcSet={`
       ${logoWebP.logo} 618w,
       ${logoWebP["logo@0.5x"]} 309w,
@@ -69,6 +76,13 @@ const nav = (props: RouteComponentProps & IProps) => {
             <img
               id="logo"
               src={logo.logo}
+              sizes="(max-width: 1650px) 1235px,
+              (max-width: 2450px) 1852px,
+              (max-width: 3300px) 2468px,
+              (max-width: 412px) 309px,
+              (max-width: 620px) 463px,
+              (max-width: 1235px) 926px,
+                    618px"
               srcSet={`
       ${logo.logo} 618w,
       ${logo["logo@0.5x"]} 309w,

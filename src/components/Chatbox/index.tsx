@@ -6,6 +6,7 @@ import ChatUser from "./ChatUser";
 import DiscordUser from "../../models/DiscordUser";
 import * as discordLogo from "../../images/discord/*.png";
 import * as discordLogoWebp from "../../images/discord/*.webp";
+import * as ReactWindow from "react-window";
 
 const FETCH_QUERY = gql`
   {
@@ -34,6 +35,15 @@ export default () => {
     <ChatUser key={user.id} user={user} />
   ));
 
+  function getList({ index, style }: ReactWindow.ListChildComponentProps) {
+    const user = data.discordUsers[index];
+    return (
+      <div style={style}>
+        <ChatUser key={user.id} user={user} />
+      </div>
+    );
+  }
+
   return (
     <div className="chat">
       <div className="chat-header">
@@ -53,7 +63,15 @@ export default () => {
         </a>
         <div className="float-right">{userList.length} members online</div>
       </div>
-      <div className="chat-list">{userList}</div>
+      <ReactWindow.FixedSizeList
+        itemSize={25}
+        height={450}
+        itemCount={userList.length}
+        width="100%"
+        className="chat-list"
+      >
+        {getList}
+      </ReactWindow.FixedSizeList>
     </div>
   );
 };

@@ -9,8 +9,8 @@ export default () => (
       <source
         type="image/webp"
         srcSet={`
+      ${logoWebP["logo@0.5x"]},
       ${logoWebP.logo} 618w,
-      ${logoWebP["logo@0.5x"]} 309w,
       ${logoWebP["logo@0.75x"]} 463w,
       ${logoWebP["logo@1.5x"]} 926w,
       ${logoWebP["logo@2x"]} 1235w,
@@ -22,8 +22,8 @@ export default () => (
         id="splash-logo"
         src={logo.logo}
         srcSet={`
+      ${logo["logo@0.5x"]},
       ${logo.logo} 618w,
-      ${logo["logo@0.5x"]} 309w,
       ${logo["logo@0.75x"]} 463w,
       ${logo["logo@1.5x"]} 926w,
       ${logo["logo@2x"]} 1235w,

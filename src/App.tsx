@@ -3,19 +3,21 @@ import NavBar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 
-import Homepage from "./pages/homepage";
-import ReviewList from "./pages/review_list";
-import ReviewApplication from "./pages/review_application";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import Whitelist from "./pages/whitelist";
+const Homepage = React.lazy(() => import("./pages/homepage"));
+const ReviewList = React.lazy(() => import("./pages/review_list"));
+const ReviewApplication = React.lazy(() =>
+  import("./pages/review_application")
+);
+const Login = React.lazy(() => import("./pages/login"));
+const Register = React.lazy(() => import("./pages/register"));
+const Whitelist = React.lazy(() => import("./pages/whitelist"));
+const ForgottenPW = React.lazy(() => import("./pages/forgot_pw"));
+const ResetPW = React.lazy(() => import("./pages/reset_pw"));
+const Verify = React.lazy(() => import("./pages/verify"));
 
-import User from "./models/User";
-import ForgottenPW from "./pages/forgot_pw";
-import ResetPW from "./pages/reset_pw";
-import Verify from "./pages/verify";
 import { gql } from "apollo-boost";
 import { apolloClient } from "./graphql";
+import User from "./models/User";
 
 export const UserContext = React.createContext<User | null>(null);
 
@@ -75,35 +77,37 @@ export default () => {
           <NavBar setToken={setToken} />
           <main>
             <div id="content">
-              <Switch>
-                <Route path="/" exact={true}>
-                  <Homepage />
-                </Route>
-                <Route path="/login" exact={true}>
-                  <Login setUser={loginSuccess} />
-                </Route>
-                <Route path="/register" exact={true}>
-                  <Register />
-                </Route>
-                <Route path="/forgot_pw" exact={true}>
-                  <ForgottenPW />
-                </Route>
-                <Route path="/reset_pw/:token" exact={true}>
-                  <ResetPW setUser={loginSuccess} />
-                </Route>
-                <Route path="/verify/:token" exact={true}>
-                  <Verify setUser={loginSuccess} />
-                </Route>
-                <Route path="/whitelist" exact={true}>
-                  <Whitelist />
-                </Route>
-                <Route path="/whitelist/review" exact={true}>
-                  <ReviewList />
-                </Route>
-                <Route path="/whitelist/review/:id" exact={true}>
-                  <ReviewApplication />
-                </Route>
-              </Switch>
+              <React.Suspense fallback={<div>Loading</div>}>
+                <Switch>
+                  <Route path="/" exact={true}>
+                    <Homepage />
+                  </Route>
+                  <Route path="/login" exact={true}>
+                    <Login setUser={loginSuccess} />
+                  </Route>
+                  <Route path="/register" exact={true}>
+                    <Register />
+                  </Route>
+                  <Route path="/forgot_pw" exact={true}>
+                    <ForgottenPW />
+                  </Route>
+                  <Route path="/reset_pw/:token" exact={true}>
+                    <ResetPW setUser={loginSuccess} />
+                  </Route>
+                  <Route path="/verify/:token" exact={true}>
+                    <Verify setUser={loginSuccess} />
+                  </Route>
+                  <Route path="/whitelist" exact={true}>
+                    <Whitelist />
+                  </Route>
+                  <Route path="/whitelist/review" exact={true}>
+                    <ReviewList />
+                  </Route>
+                  <Route path="/whitelist/review/:id" exact={true}>
+                    <ReviewApplication />
+                  </Route>
+                </Switch>
+              </React.Suspense>
             </div>
           </main>
         </Router>

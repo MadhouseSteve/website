@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
+import Splash from "./components/Splash";
 
 import Homepage from "./pages/homepage";
 import ReviewList from "./pages/review_list";
@@ -108,6 +109,7 @@ export default () => {
           </main>
         </Router>
       </UserContext.Provider>
+      <Splash />
     </ApolloProvider>
   );
 };

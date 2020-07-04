@@ -10,8 +10,7 @@
   background-color: $primary;
 
   img {
-    max-width: 75%;
-    max-height: 75%;
+    height: 115px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -27,9 +26,11 @@
   99% {
     height: 150px;
     opacity: 1;
+    display: block;
   }
   100% {
     opacity: 0;
+    display: none;
   }
 }
 

@@ -19,7 +19,7 @@ export default () => (
       `}
       />
       <img
-        id="logo"
+        id="splash-logo"
         src={logo.logo}
         srcSet={`
       ${logo.logo} 618w,

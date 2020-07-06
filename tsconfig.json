@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
+    "target": "ES5",
     "module": "ESNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["esnext", "dom"]
+    "lib": ["ES5", "dom"]
   }
 }

@@ -14,6 +14,7 @@ const SERVER_LIST = gql`
       version
       playercount
       status
+      url
     }
   }
 `;
@@ -25,6 +26,7 @@ const SERVER_LIST_SUB = gql`
       version
       playercount
       status
+      url
     }
   }
 `;
@@ -43,13 +45,15 @@ export default (props: { section: string }) => {
     return <div>Error fetching server list</div>;
   }
 
-  const serverList = data.servers.map((server: IServerStatus) => (
-    <ServerStatus key={server.id} {...server} />
-  ));
+  const serverList = data.servers.map((server: IServerStatus) => {
+    if (props.section === "vanilla") delete server.url;
+    return <ServerStatus key={server.id} {...server} />;
+  });
 
   return (
     <div className="server-status-section">
       <h2>{props.section} Minecraft Network</h2>
+      {props.section === "vanilla" && <h3>vanilla.madhouseminers.com</h3>}
 
       <div className="server-status-container">{serverList}</div>
     </div>

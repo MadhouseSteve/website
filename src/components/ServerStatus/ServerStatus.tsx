@@ -13,6 +13,7 @@ export default (props: ServerStatus) => {
       <div className="server-status-left">
         <div className="server-name">{props.name}</div>
         <div className="server-version">{props.version}</div>
+        { props.url && <div className="server-url">{props.url}</div> }
       </div>
     </div>
   );

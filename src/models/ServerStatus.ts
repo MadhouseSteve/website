@@ -12,4 +12,5 @@ export default interface ServerStatus {
   version: string;
   playercount: number;
   status: ServerStatuses;
+  url?: string;
 }

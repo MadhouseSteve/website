@@ -34,7 +34,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
-    "react-window": "^1.8.5",
+    "react-window": "^1.8.6",
     "subscriptions-transport-ws": "^0.9.18",
     "ws": "^7.3.1"
   },

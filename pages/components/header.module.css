@@ -1,0 +1,20 @@
+.wrapper {
+    @apply bg-purple px-8 shadow-lg py-2;
+}
+
+.header {
+    @apply flex items-center justify-between;
+}
+
+.logo, #logo {
+    @apply h-28 cursor-pointer;
+}
+
+.links a {
+    @apply py-3 px-4 hover:bg-purple-500 rounded-lg hover:text-white;
+    @apply duration-75 ease-in transition;
+}
+
+.home {
+    @apply cursor-pointer;
+}

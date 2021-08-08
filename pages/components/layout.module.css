@@ -1,3 +1,3 @@
 #main {
-    @apply m-8;
+    @apply m-8 container mx-auto;
 }

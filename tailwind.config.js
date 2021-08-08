@@ -12,7 +12,9 @@ module.exports = {
       },
       colors: {
         purple: {
-          DEFAULT: '#aea1ea'
+          light: '#beb3ee',
+          DEFAULT: '#aea1ea',
+          dark: '#7970a3',
         },
         gray: colors.trueGray,
         warm: colors.warmGray,

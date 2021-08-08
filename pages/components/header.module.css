@@ -11,8 +11,8 @@
 }
 
 .links a {
-    @apply py-3 px-4 hover:bg-purple-500 rounded-lg hover:text-white;
-    @apply duration-75 ease-in transition;
+    @apply py-3 px-4 hover:bg-purple-dark rounded-lg hover:text-white;
+    @apply transition duration-150 ease-in;
 }
 
 .home {

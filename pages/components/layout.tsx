@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from "./header";
-import "./layout.module.css";
+import styles from "./layout.module.css";
 
 export default function Layout({ children }) {
     // @ts-ignore
@@ -16,7 +16,7 @@ export default function Layout({ children }) {
             </Head>
             <Header/>
 
-            <main id="main">{children}</main>
+            <main id={styles.main}>{children}</main>
         </>
     )
 }

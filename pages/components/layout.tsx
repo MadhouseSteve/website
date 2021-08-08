@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     return (
         <>
             <Head>
-                <title>Madhouse Miners</title>
+                <title>Madhouse Miners - Unleash your inner Madness!</title>
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com"/>
                 <link

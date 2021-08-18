@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #logo {
     @apply h-28 cursor-pointer;
 }

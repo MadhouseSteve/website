@@ -28,11 +28,11 @@ export default {
 
 <style scoped>
 .wrapper {
-    @apply bg-purple px-8 shadow-lg py-2;
+    @apply bg-purple px-8 shadow-md py-2;
 }
 
 .links a {
-    @apply py-3 px-4 hover:bg-purple-dark rounded-lg hover:text-white;
+    @apply py-3 px-4 hover:bg-purple-dark rounded-lg hover:text-white bg-white text-purple font-semibold;
     @apply transition duration-150 ease-in;
 }
 </style>

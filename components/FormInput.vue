@@ -1,0 +1,19 @@
+<template>
+    <input :type="type" :name="name" id="email" />
+</template>
+
+<script>
+export default {
+    name: "FormInput",
+
+    props: ['type', 'name'],
+}
+</script>
+
+<style scoped>
+input {
+    @apply block w-full font-thin rounded py-2 px-3 border-gray-400;
+    @apply focus:ring-4 focus:ring-purple focus:border-purple focus:ring-opacity-50;
+    @apply transition duration-150 ease-in;
+}
+</style>

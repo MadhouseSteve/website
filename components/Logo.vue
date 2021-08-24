@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink to="/">
+    <NuxtLink exact to="/" id="logo">
         <picture>
             <source
                 type="image/webp"

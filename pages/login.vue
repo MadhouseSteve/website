@@ -3,17 +3,24 @@
     <div>
         <NavigationBar />
 
-        <div class="my-6 w-1/4 p-6 mx-auto rounded">
+        <div class="my-6 w-full sm:w-3/4 md:w-1/2 lg:w-2/4 xl:w-1/4 p-6 mx-auto rounded">
+            <h1 class="text-gray-600 text-3xl">
+                Log In
+            </h1>
+            <h2 class="text-gray-400 text-sm border-t border-gray-300 mt-1 pt-1 mb-4">
+                Log in to modify your account or request whitelisting.
+            </h2>
+
             <form @submit.prevent="login">
                 <div class="form-group">
-                    <FormLabel name="email" label="Email Address" />
-                    <FormInput type="email" name="email" id="email" class=""
+                    <FormLabel name="email" label="Email Address" aria-label="Email Address" id="emailLabel" />
+                    <FormInput type="email" name="email" id="email" class="" aria-labelledby="emailLabel"
                            v-model="form.email" autofocus autocomplete="email" />
                 </div>
 
                 <div class="form-group">
-                    <FormLabel name="password" label="Password" />
-                    <FormInput type="password" name="password" id="password" class=""
+                    <FormLabel name="password" label="Password" id="passwordLabel" aria-label="Password" />
+                    <FormInput type="password" name="password" id="password" class="" aria-labelledby="passwordLabel"
                            v-model="form.password" autocomplete="current-password" />
                 </div>
 

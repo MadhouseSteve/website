@@ -4,10 +4,10 @@
         <NavigationBar />
 
         <div class="my-6 w-full sm:w-3/4 md:w-1/2 lg:w-2/4 xl:w-1/4 p-6 mx-auto rounded">
-            <h1 class="text-gray-600 text-3xl">
+            <h1 class="text-gray-700 text-3xl">
                 Forgot Password
             </h1>
-            <h2 class="text-gray-400 text-sm border-t border-gray-300 mt-1 pt-1 mb-4">
+            <h2 class="text-gray-600 text-sm border-t border-gray-300 mt-1 pt-1 mb-4">
                 You can reset your password if you have forgotten it.
             </h2>
 
@@ -39,7 +39,7 @@
 
 
 button {
-    @apply bg-purple text-white rounded font-semibold tracking-wide px-4 py-2 uppercase text-sm;
+    @apply bg-purple text-black rounded font-semibold tracking-wide px-4 py-2 uppercase text-sm;
     @apply hover:bg-purple-dark;
     @apply focus:ring-4 focus:ring-purple focus:border-purple focus:ring-opacity-50;
     @apply transition duration-150 ease-in;
@@ -48,18 +48,22 @@ button {
 
 <script lang="ts">
 import Vue from 'vue'
+import FormInput from '~/components/FormInput.vue';
+import FormLabel from '~/components/FormLabel.vue';
+import NavigationBar from '~/components/NavigationBar.vue';
 
 export default Vue.extend({
     name: "ForgotPassword",
 
     components: {
-
+        FormInput,
+        FormLabel,
+        NavigationBar,
     },
 
     head() {
         return{
             title: 'Forgot Password',
-            titleTemplate: '%s - Madhouse Miners - Unleash Your Inner Madness!'
         }
     },
 

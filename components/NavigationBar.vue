@@ -15,7 +15,8 @@
                 <Logo />
 
                 <div :class="`hamburg ${mobile_nav_open ? 'open' : ''}`" @click="mobile_nav_open = !mobile_nav_open">
-                    <button :class="`hamburger hamburger--slider ${mobile_nav_open ? 'is-active' : ''}`" type="button">
+                    <button :class="`hamburger hamburger--slider ${mobile_nav_open ? 'is-active' : ''}`" type="button"
+                        :aria-label="`${mobile_nav_open ? 'Close' : 'Open'} Menu`">
                         <span class="hamburger-box">
                             <span class="hamburger-inner"></span>
                         </span>

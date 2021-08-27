@@ -7,7 +7,7 @@
             <h1 class="text-gray-600 text-3xl">
                 Register
             </h1>
-            <h2 class="text-gray-400 text-sm border-t border-gray-300 mt-1 pt-1 mb-4">
+            <h2 class="text-gray-600 text-sm border-t border-gray-300 mt-1 pt-1 mb-4">
                 Register an account to get on the server access list.
             </h2>
 
@@ -121,7 +121,7 @@
 
 
 button {
-    @apply bg-purple text-white rounded font-semibold tracking-wide px-4 py-2 uppercase text-sm;
+    @apply bg-purple text-black rounded font-semibold tracking-wide px-4 py-2 uppercase text-sm;
     @apply hover:bg-purple-dark;
     @apply focus:ring-4 focus:ring-purple focus:border-purple focus:ring-opacity-50;
     @apply transition duration-150 ease-in;
@@ -130,18 +130,22 @@ button {
 
 <script lang="ts">
 import Vue from 'vue';
+import FormInput from '~/components/FormInput.vue';
+import FormLabel from '~/components/FormLabel.vue';
+import NavigationBar from '~/components/NavigationBar.vue';
 
 export default Vue.extend({
     name: "Register",
 
     components: {
-
+        FormInput,
+        FormLabel,
+        NavigationBar
     },
 
     head() {
         return{
             title: 'Register',
-            titleTemplate: '%s - Madhouse Miners - Unleash Your Inner Madness!'
         }
     },
 

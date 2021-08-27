@@ -5,31 +5,23 @@
 
         <div class="my-6 w-full sm:w-3/4 md:w-1/2 lg:w-2/4 xl:w-1/4 p-6 mx-auto rounded">
             <h1 class="text-gray-600 text-3xl">
-                Log In
+                Forgot Password
             </h1>
             <h2 class="text-gray-400 text-sm border-t border-gray-300 mt-1 pt-1 mb-4">
-                Log in to modify your account or to apply to be added to the server access list.
+                You can reset your password if you have forgotten it.
             </h2>
 
-            <form @submit.prevent="login">
+            <form @submit.prevent="reset_passwd">
                 <div class="form-group">
                     <FormLabel name="email" label="Email Address" aria-label="Email Address" id="emailLabel" />
                     <FormInput type="email" name="email" id="email" class="" aria-labelledby="emailLabel"
                            v-model="form.email" autofocus autocomplete="email" />
                 </div>
 
-                <div class="form-group">
-                    <FormLabel name="password" label="Password" id="passwordLabel" aria-label="Password" />
-                    <FormInput type="password" name="password" id="password" class="" aria-labelledby="passwordLabel"
-                           v-model="form.password" autocomplete="current-password" />
-                </div>
-
-                <div class="form-group">
-                    <FormCheckbox name="remember" label="Remember Me" />
-                </div>
-
                 <div class="form-group flex justify-end">
-                    <button type="submit" class="">Log In</button>
+                    <button type="submit" class="">
+                        Send Password Reset Email
+                    </button>
                 </div>
             </form>
         </div>
@@ -55,10 +47,10 @@ button {
 </style>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from 'vue'
 
 export default Vue.extend({
-    name: "Login",
+    name: "ForgotPassword",
 
     components: {
 
@@ -66,7 +58,7 @@ export default Vue.extend({
 
     head() {
         return{
-            title: 'Log In',
+            title: 'Forgot Password',
             titleTemplate: '%s - Madhouse Miners - Unleash Your Inner Madness!'
         }
     },
@@ -82,7 +74,7 @@ export default Vue.extend({
     },
 
     methods: {
-        login() {
+        reset_passwd() {
             console.log(this.form.email);
         }
     },

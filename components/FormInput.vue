@@ -1,5 +1,5 @@
 <template>
-    <input :value="modelValue" ref="input"
+    <input :value="modelValue" ref="input" :type="type"
            @input="$emit('update:modelValue', $event.target.value)" />
 </template>
 
@@ -7,9 +7,9 @@
 export default {
     name: "FormInput",
 
-    props: ['modelValue'],
+    props: ["modelValue", "type"],
 
-    emits: ['update:modelValue'],
+    emits: ["update:modelValue"]
 }
 </script>
 
